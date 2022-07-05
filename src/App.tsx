@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Buffer } from "buffer";
-import List from "./components/List";
+
+interface Data {
+  time: number;
+  states: AircraftData[]
+}
+
 
 export interface AircraftData {
   icao24: string;
@@ -26,29 +30,33 @@ export interface AircraftData {
 function App() {
   const [aircrafts, setAircrafts] = useState<AircraftData[]>([]);
 
+  const getAircratsData = async (): Promise<void> => {
+    const url = "https://@opensky-network.org/api/states/all";
+    const headers = new Headers();
+    const username = process.env.REACT_APP_USERNAME;
+    const password = process.env.REACT_APP_PASSWORD;
+    headers.append("Authorization", "Basic " + window.btoa(username + ":" + password))
+    const params = new URLSearchParams({
+      lamin: "49.00",
+      lomin: "14.07",
+      lamax: "54.50",
+      lomax: "24.09",
+    });
+
+    const response = await fetch(`${url}?${params.toString()}`, {headers: headers});
+    const data:Data = await response.json();
+    console.log(data);
+    const { states } = data;
+    if (states.length > 0) {
+      setAircrafts(states);
+    }
+  };
+
   useEffect(() => {
-    const getAircratsData = async (): Promise<void> => {
-      const url = "https://@opensky-network.org/api/states/all";
-      const headers = new Headers();
-      const username = "VampusDC";
-      const password = "Dawidwsn12!"
-      headers.append("Authorization", "Basic " + window.btoa(username + ":" + password))
-      const params = new URLSearchParams({
-        lamin: "49.00",
-        lomin: "14.07",
-        lamax: "54.50",
-        lomax: "24.09",
-      });
+    getAircratsData();
+  }, [])
 
-      const response = await fetch(`${url}?${params.toString()}`, {headers: headers});
-      const data = await response.json();
-      console.log(data);
-      const { states } = await data;
-      if (states.length > 0) {
-        setAircrafts(states);
-      }
-    };
-
+  useEffect(() => {
     const interval = setInterval(() => getAircratsData(), 15000);
     console.log(aircrafts);
     return () => clearInterval(interval);
