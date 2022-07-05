@@ -2,29 +2,30 @@ import React, { useState, useEffect } from "react";
 
 interface Data {
   time: number;
-  states: AircraftData[]
+  states: [
+    [string, string | null, string, number | null, number, number, number, number | null, boolean, number, number | null, number | null, null, number | null, string | null, boolean, 0 | 1 | 2 | 3, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20,]
+  ];
 }
 
-
 export interface AircraftData {
-  icao24: string;
-  callsign: string;
-  originCountry: string;
-  timePosition: number | null;
-  lastContact: number;
-  longitude: number;
-  latitude: number;
-  baroAltitude: number | null;
-  onGround: boolean;
-  velocity: number;
-  trueTrack: number | null;
-  verticalRate: number | null;
-  sensors: null;
-  geoAltitude: number | null;
-  squawk: string | null;
-  spi: boolean;
-  positionSource: number;
-  category: number;
+    icao24: string,
+    callsign: string | null,
+    originCountry: string,
+    timePosition: number | null,
+    lastContact: number,
+    longitude: number,
+    latitude: number,
+    baroAltitude: number | null,
+    onGround: boolean,
+    velocity: number,
+    trueTrack: number | null,
+    verticalRate: number | null,
+    sensors: null,
+    geoAltitude: number | null,
+    squawk: string | null,
+    spi: boolean,
+    positionSource: 0 | 1 | 2 | 3,
+    category: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20,
 }
 
 function App() {
@@ -47,8 +48,30 @@ function App() {
     const data:Data = await response.json();
     console.log(data);
     const { states } = data;
+    const aircraftsData:AircraftData[] = states.map(state => { 
+      return {
+        icao24: state[0],
+        callsign: state[1],
+        originCountry: state[2],
+        timePosition: state[3],
+        lastContact: state[4],
+        longitude: state[5],
+        latitude: state[6],
+        baroAltitude: state[7],
+        onGround: state[8],
+        velocity: state[9],
+        trueTrack: state[10],
+        verticalRate: state[11],
+        sensors: state[12],
+        geoAltitude: state[13],
+        squawk: state[14],
+        spi: state[15],
+        positionSource: state[16],
+        category: state[17],
+      } as AircraftData
+    })
     if (states.length > 0) {
-      setAircrafts(states);
+      setAircrafts(aircraftsData);
     }
   };
 
