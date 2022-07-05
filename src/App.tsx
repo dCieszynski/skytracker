@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Map from "./components/Map"
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+      <Map></Map>
     </div>
   );
 }
