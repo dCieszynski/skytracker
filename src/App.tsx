@@ -3,29 +3,91 @@ import React, { useState, useEffect } from "react";
 interface Data {
   time: number;
   states: [
-    [string, string | null, string, number | null, number, number, number, number | null, boolean, number, number | null, number | null, null, number | null, string | null, boolean, 0 | 1 | 2 | 3, 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20,]
+    [
+      string,
+      string | null,
+      string,
+      number | null,
+      number,
+      number,
+      number,
+      number | null,
+      boolean,
+      number,
+      number | null,
+      number | null,
+      null,
+      number | null,
+      string | null,
+      boolean,
+      0 | 1 | 2 | 3,
+      (
+        | 0
+        | 1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6
+        | 7
+        | 8
+        | 9
+        | 10
+        | 11
+        | 12
+        | 13
+        | 14
+        | 15
+        | 16
+        | 17
+        | 18
+        | 19
+        | 20
+      )
+    ]
   ];
 }
 
 export interface AircraftData {
-    icao24: string,
-    callsign: string | null,
-    originCountry: string,
-    timePosition: number | null,
-    lastContact: number,
-    longitude: number,
-    latitude: number,
-    baroAltitude: number | null,
-    onGround: boolean,
-    velocity: number,
-    trueTrack: number | null,
-    verticalRate: number | null,
-    sensors: null,
-    geoAltitude: number | null,
-    squawk: string | null,
-    spi: boolean,
-    positionSource: 0 | 1 | 2 | 3,
-    category: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20,
+  icao24: string;
+  callsign: string | null;
+  originCountry: string;
+  timePosition: number | null;
+  lastContact: number;
+  longitude: number;
+  latitude: number;
+  baroAltitude: number | null;
+  onGround: boolean;
+  velocity: number;
+  trueTrack: number | null;
+  verticalRate: number | null;
+  sensors: null;
+  geoAltitude: number | null;
+  squawk: string | null;
+  spi: boolean;
+  positionSource: 0 | 1 | 2 | 3;
+  category:
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20;
 }
 
 function App() {
@@ -36,7 +98,10 @@ function App() {
     const headers = new Headers();
     const username = process.env.REACT_APP_USERNAME;
     const password = process.env.REACT_APP_PASSWORD;
-    headers.append("Authorization", "Basic " + window.btoa(username + ":" + password))
+    headers.append(
+      "Authorization",
+      "Basic " + window.btoa(username + ":" + password)
+    );
     const params = new URLSearchParams({
       lamin: "49.00",
       lomin: "14.07",
@@ -44,11 +109,13 @@ function App() {
       lomax: "24.09",
     });
 
-    const response = await fetch(`${url}?${params.toString()}`, {headers: headers});
-    const data:Data = await response.json();
+    const response = await fetch(`${url}?${params.toString()}`, {
+      headers: headers,
+    });
+    const data: Data = await response.json();
     console.log(data);
     const { states } = data;
-    const aircraftsData:AircraftData[] = states.map(state => { 
+    const aircraftsData: AircraftData[] = states.map((state) => {
       return {
         icao24: state[0],
         callsign: state[1],
@@ -68,8 +135,8 @@ function App() {
         spi: state[15],
         positionSource: state[16],
         category: state[17],
-      } as AircraftData
-    })
+      } as AircraftData;
+    });
     if (states.length > 0) {
       setAircrafts(aircraftsData);
     }
@@ -77,7 +144,7 @@ function App() {
 
   useEffect(() => {
     getAircratsData();
-  }, [])
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => getAircratsData(), 15000);
