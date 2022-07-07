@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import Map from "./components/Map"
 
 interface Data {
   time: number;
@@ -152,7 +153,11 @@ function App() {
     return () => clearInterval(interval);
   }, [aircrafts]);
 
-  return <div className="App">Skytracker</div>;
+  return (
+    <div className="App">
+      <Map></Map>
+    </div>
+  );
 }
 
 export default App;
