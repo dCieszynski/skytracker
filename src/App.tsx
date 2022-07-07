@@ -155,7 +155,7 @@ function App() {
 
   return (
     <div className="App">
-      <Map></Map>
+      <Map aircrafts={aircrafts}></Map>
     </div>
   );
 }
