@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Map from "./components/Map"
+import React, { useState, useEffect } from "react";
+import List from "./components/List";
+import Map from "./components/Map";
+import Searchbar from "./components/Searchbar";
 
 interface Data {
   time: number;
@@ -155,8 +157,12 @@ function App() {
 
   return (
     <div>
-      <h1 className='text-lg'>Skytracker</h1>
-      <Map aircrafts={aircrafts}></Map>
+      <h1 className="text-lg">Skytracker</h1>
+      <Searchbar></Searchbar>
+      <div>
+        <Map aircrafts={aircrafts}></Map>
+        <List></List>
+      </div>
     </div>
   );
 }
