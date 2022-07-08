@@ -161,9 +161,11 @@ function App() {
         Skytracker
       </h1>
       <Searchbar></Searchbar>
-      <div>
+      <div className="w-full mt-4">
         <Map aircrafts={aircrafts}></Map>
-        <List></List>
+        <div>
+          <List></List>
+        </div>
       </div>
     </div>
   );
