@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import InfoPanel from "./components/InfoPanel";
 import List from "./components/List";
 import Map from "./components/Map";
 import Searchbar from "./components/Searchbar";
@@ -165,6 +166,7 @@ function App() {
         <Map aircrafts={aircrafts}></Map>
         <div>
           <List></List>
+          <InfoPanel></InfoPanel>
         </div>
       </div>
     </div>
