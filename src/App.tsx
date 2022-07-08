@@ -156,8 +156,10 @@ function App() {
   }, [aircrafts]);
 
   return (
-    <div>
-      <h1 className="text-lg">Skytracker</h1>
+    <div className="h-screen flex flex-col items-center bg-indigo-900 text-white p-4">
+      <h1 className="self-start text-3xl border-2 border-white rounded-full px-4 py-2">
+        Skytracker
+      </h1>
       <Searchbar></Searchbar>
       <div>
         <Map aircrafts={aircrafts}></Map>
