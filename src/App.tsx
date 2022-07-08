@@ -154,7 +154,8 @@ function App() {
   }, [aircrafts]);
 
   return (
-    <div className="App">
+    <div>
+      <h1 className='text-lg'>Skytracker</h1>
       <Map aircrafts={aircrafts}></Map>
     </div>
   );
