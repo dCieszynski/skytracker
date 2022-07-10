@@ -1,17 +1,18 @@
-import React from 'react'
+import React from "react";
+import { AircraftData } from "../App";
 
-const List: React.FC = () => {
-
-  return (
-    <ul>
-      <li>471efc</li>
-      <li>471efc</li>
-      <li>471efc</li>
-      <li>471efc</li>
-      <li>471efc</li>
-      <li>471efc</li>
-    </ul>
-  )
+interface Props {
+  aircrafts: AircraftData[];
 }
 
-export default List
+const List: React.FC<Props> = ({ aircrafts }) => {
+  return (
+    <ul>
+      {aircrafts.map((aircraft) => {
+        return <li>{aircraft.icao24}</li>;
+      })}
+    </ul>
+  );
+};
+
+export default List;

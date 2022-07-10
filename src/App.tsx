@@ -165,7 +165,7 @@ function App() {
       <div className="w-full mt-4">
         <Map aircrafts={aircrafts}></Map>
         <div className="flex justify-between mt-4">
-          <List></List>
+          <List aircrafts={aircrafts}></List>
           <InfoPanel></InfoPanel>
         </div>
       </div>
