@@ -164,7 +164,7 @@ function App() {
       <Searchbar></Searchbar>
       <div className="w-full mt-4">
         <Map aircrafts={aircrafts}></Map>
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between mt-2">
           <List aircrafts={aircrafts}></List>
           <InfoPanel></InfoPanel>
         </div>
