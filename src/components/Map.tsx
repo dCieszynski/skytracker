@@ -51,6 +51,7 @@ const Map: React.FC<Props> = ({
       {aircrafts.map((aircraft) => {
         return (
           <Marker
+            key={aircraft.icao24}
             position={[aircraft.latitude, aircraft.longitude]}
             icon={myIcon}
             eventHandlers={{
