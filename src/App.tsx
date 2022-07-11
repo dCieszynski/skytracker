@@ -168,6 +168,7 @@ function App() {
       <div className="w-full mt-4">
         <Map
           aircrafts={aircrafts}
+          selectedAircraft={selectedAircraft}
           setSelectedAircraft={setSelectedAircraft}
         ></Map>
         <div className="flex gap-12 mt-2 border-white border-2 rounded-md p-1">

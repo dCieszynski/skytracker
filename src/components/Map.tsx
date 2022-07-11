@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Leaflet from "leaflet";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import SetMapCenter from "./SetMapCenter";
 import { AircraftData } from "../App";
 
 interface Props {
   aircrafts: AircraftData[];
+  selectedAircraft: AircraftData | null;
   setSelectedAircraft: React.Dispatch<
     React.SetStateAction<AircraftData | null>
   >;
@@ -16,13 +18,29 @@ let myIcon = Leaflet.icon({
   iconAnchor: [10, 10],
 });
 
-const Map: React.FC<Props> = ({ aircrafts, setSelectedAircraft }) => {
+const Map: React.FC<Props> = ({
+  aircrafts,
+  selectedAircraft,
+  setSelectedAircraft,
+}) => {
   console.log(aircrafts);
+
+  const [center, setCenter] = useState<Leaflet.LatLngExpression>([52.12, 19.0]);
+
+  useEffect(() => {
+    if (selectedAircraft) {
+      const newCenter: Leaflet.LatLngExpression = [
+        selectedAircraft.latitude,
+        selectedAircraft.longitude,
+      ];
+      setCenter(newCenter);
+    }
+  }, [selectedAircraft]);
 
   return (
     <MapContainer
       className="h-[220px]"
-      center={[52.12, 19.0]}
+      center={center}
       zoom={5}
       scrollWheelZoom={false}
     >
@@ -43,6 +61,7 @@ const Map: React.FC<Props> = ({ aircrafts, setSelectedAircraft }) => {
           ></Marker>
         );
       })}
+      <SetMapCenter center={center}></SetMapCenter>
     </MapContainer>
   );
 };
