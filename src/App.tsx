@@ -171,7 +171,10 @@ function App() {
           setSelectedAircraft={setSelectedAircraft}
         ></Map>
         <div className="flex gap-12 mt-2 border-white border-2 rounded-md p-1">
-          <List aircrafts={aircrafts}></List>
+          <List
+            aircrafts={aircrafts}
+            setSelectedAircraft={setSelectedAircraft}
+          ></List>
           <InfoPanel selectedAircraft={selectedAircraft}></InfoPanel>
         </div>
       </div>
