@@ -96,6 +96,9 @@ export interface AircraftData {
 
 function App() {
   const [aircrafts, setAircrafts] = useState<AircraftData[]>([]);
+  const [selectedAircraft, setSelectedAircraft] = useState<AircraftData | null>(
+    null
+  );
 
   const getAircratsData = async (): Promise<void> => {
     const url = "https://@opensky-network.org/api/states/all";
@@ -163,10 +166,13 @@ function App() {
       </h1>
       <Searchbar></Searchbar>
       <div className="w-full mt-4">
-        <Map aircrafts={aircrafts}></Map>
+        <Map
+          aircrafts={aircrafts}
+          setSelectedAircraft={setSelectedAircraft}
+        ></Map>
         <div className="flex gap-12 mt-2 border-white border-2 rounded-md p-1">
           <List aircrafts={aircrafts}></List>
-          <InfoPanel></InfoPanel>
+          <InfoPanel selectedAircraft={selectedAircraft}></InfoPanel>
         </div>
       </div>
     </div>

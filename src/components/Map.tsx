@@ -1,10 +1,13 @@
 import React from "react";
 import Leaflet from "leaflet";
-import { MapContainer, TileLayer, useMap, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { AircraftData } from "../App";
 
 interface Props {
   aircrafts: AircraftData[];
+  setSelectedAircraft: React.Dispatch<
+    React.SetStateAction<AircraftData | null>
+  >;
 }
 
 let myIcon = Leaflet.icon({
@@ -13,8 +16,9 @@ let myIcon = Leaflet.icon({
   iconAnchor: [10, 10],
 });
 
-const Map: React.FC<Props> = ({ aircrafts }) => {
+const Map: React.FC<Props> = ({ aircrafts, setSelectedAircraft }) => {
   console.log(aircrafts);
+
   return (
     <MapContainer
       className="h-[220px]"
@@ -31,6 +35,11 @@ const Map: React.FC<Props> = ({ aircrafts }) => {
           <Marker
             position={[aircraft.latitude, aircraft.longitude]}
             icon={myIcon}
+            eventHandlers={{
+              click: () => {
+                setSelectedAircraft(aircraft);
+              },
+            }}
           ></Marker>
         );
       })}
