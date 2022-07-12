@@ -39,7 +39,7 @@ const Map: React.FC<Props> = ({
 
   return (
     <MapContainer
-      className="h-[220px]"
+      className="h-[260px] sm:h-[300px] md:h-[340px] lg:h-[380px] xl:h-[420px] 2xl:[460px]"
       center={center}
       zoom={5}
       scrollWheelZoom={false}
