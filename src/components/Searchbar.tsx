@@ -34,7 +34,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
 
   return (
     <div className="flex flex-col mt-4 w-full">
-      <form className="flex flex-col gap-2 border-2 p-4 rounded-2xl">
+      <div className="flex flex-col gap-2">
         <div className="flex justify-between">
           <label>MinLatitude</label>
           <input className="w-1/4 text-black" type="number" ref={minLatInput} />
@@ -57,7 +57,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
         >
           Search
         </button>
-      </form>
+      </div>
     </div>
   );
 };

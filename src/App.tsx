@@ -172,19 +172,19 @@ function App() {
   }, [searchParams]);
 
   return (
-    <div className="h-screen flex flex-col items-center bg-indigo-900 text-white p-4">
+    <div className="min-h-screen flex flex-col items-center bg-indigo-900 text-white p-4">
       <h1 className="self-start text-2xl border-2 border-white rounded-full px-4 py-2">
         Skytracker
       </h1>
       <Searchbar setSearchParams={setSearchParams}></Searchbar>
-      <div className="w-full mt-4">
+      <div className="w-full min-h-full mt-4">
         <Map
           aircrafts={aircrafts}
           selectedAircraft={selectedAircraft}
           setSelectedAircraft={setSelectedAircraft}
           searchParams={searchParams}
         ></Map>
-        <div className="flex gap-8 mt-2 border-white border-2 rounded-md p-1">
+        <div className="flex gap-8 mt-4 border-white border-2 rounded-md p-1">
           <List
             aircrafts={aircrafts}
             setSelectedAircraft={setSelectedAircraft}
