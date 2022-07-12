@@ -94,11 +94,24 @@ export interface AircraftData {
     | 20;
 }
 
+export interface SearchParams {
+  lamin: string;
+  lomin: string;
+  lamax: string;
+  lomax: string;
+}
+
 function App() {
   const [aircrafts, setAircrafts] = useState<AircraftData[]>([]);
   const [selectedAircraft, setSelectedAircraft] = useState<AircraftData | null>(
     null
   );
+  const [searchParams, setSearchParams] = useState<SearchParams>({
+    lamin: "49.00",
+    lomin: "14.07",
+    lamax: "54.50",
+    lomax: "24.09",
+  });
 
   const getAircratsData = async (): Promise<void> => {
     const url = "https://@opensky-network.org/api/states/all";
@@ -109,12 +122,7 @@ function App() {
       "Authorization",
       "Basic " + window.btoa(username + ":" + password)
     );
-    const params = new URLSearchParams({
-      lamin: "49.00",
-      lomin: "14.07",
-      lamax: "54.50",
-      lomax: "24.09",
-    });
+    const params = new URLSearchParams({ ...searchParams });
 
     const response = await fetch(`${url}?${params.toString()}`, {
       headers: headers,
@@ -159,12 +167,16 @@ function App() {
     return () => clearInterval(interval);
   }, [aircrafts]);
 
+  useEffect(() => {
+    getAircratsData();
+  }, [searchParams]);
+
   return (
     <div className="h-screen flex flex-col items-center bg-indigo-900 text-white p-4">
       <h1 className="self-start text-3xl border-2 border-white rounded-full px-4 py-2">
         Skytracker
       </h1>
-      <Searchbar></Searchbar>
+      <Searchbar setSearchParams={setSearchParams}></Searchbar>
       <div className="w-full mt-4">
         <Map
           aircrafts={aircrafts}
