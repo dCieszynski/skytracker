@@ -182,6 +182,7 @@ function App() {
           aircrafts={aircrafts}
           selectedAircraft={selectedAircraft}
           setSelectedAircraft={setSelectedAircraft}
+          searchParams={searchParams}
         ></Map>
         <div className="flex gap-12 mt-2 border-white border-2 rounded-md p-1">
           <List
