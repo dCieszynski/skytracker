@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { SearchParams } from "../App";
 
 interface Props {
@@ -13,11 +13,10 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
     lomax: "180",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    const value = e.target.value.replace(/[^0-9]/gi, "");
+    const value: string = e.target.value.replace(/[^0-9]/gi, "");
     setInputsValues({ ...inputsValues, [name]: value });
-    console.log(inputsValues);
   };
 
   const handleSearch = () => {
@@ -37,7 +36,6 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
       lomin: lominValue,
       lomax: lomaxValue,
     };
-    console.log(params);
     if (
       params.lamin === "0" &&
       params.lamax === "0" &&
