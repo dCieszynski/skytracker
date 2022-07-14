@@ -60,7 +60,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
         <div className="flex justify-between">
           <label>MinLatitude</label>
           <input
-            className="w-1/4 text-black"
+            className="w-1/4 text-black text-center"
             type="text"
             name="lamin"
             placeholder="Enter number between 0 to 90"
@@ -71,7 +71,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
         <div className="flex justify-between">
           <label>MaxLatitude</label>
           <input
-            className="w-1/4 text-black"
+            className="w-1/4 text-black text-center"
             type="text"
             name="lamax"
             placeholder="Enter number between 0 to 90"
@@ -82,7 +82,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
         <div className="flex justify-between">
           <label>MinLongitude</label>
           <input
-            className="w-1/4 text-black"
+            className="w-1/4 text-black text-center"
             type="text"
             name="lomin"
             placeholder="Enter number between 0 to 180"
@@ -93,7 +93,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
         <div className="flex justify-between">
           <label>MaxLongitude</label>
           <input
-            className="w-1/4 text-black"
+            className="w-1/4 text-black text-center"
             type="text"
             name="lomax"
             placeholder="Enter number between 0 to 180"
@@ -102,7 +102,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
           />
         </div>
         <button
-          className="self-center border-2 rounded-lg w-fit py-2 px-4"
+          className="self-center border-2 rounded-lg w-fit py-2 px-4 cursor-pointer"
           onClick={handleSearch}
         >
           Search

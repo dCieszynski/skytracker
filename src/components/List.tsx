@@ -17,7 +17,7 @@ const List: React.FC<Props> = ({ aircrafts, setSelectedAircraft }) => {
           return (
             <li
               key={aircraft.icao24}
-              className="py-1 border-indigo-400 border-y-2 w-full text-center"
+              className="py-1 border-indigo-400 border-y-2 w-full text-center cursor-pointer"
               onClick={() => setSelectedAircraft(aircraft)}
             >
               {aircraft.icao24}
