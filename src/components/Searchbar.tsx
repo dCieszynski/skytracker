@@ -9,8 +9,8 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
   const [inputsValues, setInputsValues] = useState<SearchParams>({
     lamin: "0",
     lomin: "0",
-    lamax: "0",
-    lomax: "0",
+    lamax: "90",
+    lomax: "180",
   });
 
   const handleChange = (e: any) => {
@@ -37,8 +37,23 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
       lomin: lominValue,
       lomax: lomaxValue,
     };
-    setSearchParams(params);
-    setInputsValues({ lamin: "0", lamax: "0", lomin: "0", lomax: "0" });
+    console.log(params);
+    if (
+      params.lamin === "0" &&
+      params.lamax === "0" &&
+      params.lomin === "0" &&
+      params.lomax === "0"
+    ) {
+      setSearchParams({ lamin: "0", lamax: "90", lomin: "0", lomax: "180" });
+    } else if (
+      parseInt(params.lamin) >= parseInt(params.lamax) ||
+      parseInt(params.lomin) >= parseInt(params.lomax)
+    ) {
+      setSearchParams({ lamin: "0", lamax: "90", lomin: "0", lomax: "180" });
+    } else {
+      setSearchParams(params);
+    }
+    setInputsValues({ lamin: "0", lamax: "90", lomin: "0", lomax: "180" });
   };
 
   return (

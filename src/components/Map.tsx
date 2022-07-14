@@ -27,7 +27,7 @@ const Map: React.FC<Props> = ({
 }) => {
   console.log(aircrafts);
 
-  const [center, setCenter] = useState<Leaflet.LatLngExpression>([52.12, 19.0]);
+  const [center, setCenter] = useState<Leaflet.LatLngExpression>([52, 19]);
 
   useEffect(() => {
     if (selectedAircraft) {
@@ -42,10 +42,10 @@ const Map: React.FC<Props> = ({
   useEffect(() => {
     const handleMapCenter = () => {
       const { lamin, lamax, lomin, lomax } = {
-        lamin: parseFloat(searchParams.lamin),
-        lamax: parseFloat(searchParams.lamax),
-        lomin: parseFloat(searchParams.lomin),
-        lomax: parseFloat(searchParams.lomax),
+        lamin: parseInt(searchParams.lamin),
+        lamax: parseInt(searchParams.lamax),
+        lomin: parseInt(searchParams.lomin),
+        lomax: parseInt(searchParams.lomax),
       };
 
       const la = (lamax - lamin) / 2 + lamin;
