@@ -7,15 +7,15 @@ interface Props {
 
 const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
   const [inputsValues, setInputsValues] = useState<SearchParams>({
-    lamin: "0",
-    lomin: "0",
+    lamin: "-90",
+    lomin: "-180",
     lamax: "90",
     lomax: "180",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    const value: string = e.target.value.replace(/[^0-9]/gi, "");
+    const value: string = e.target.value.replace(/([^-0-9])/gi, "");
     setInputsValues({ ...inputsValues, [name]: value });
   };
 
@@ -26,32 +26,33 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
       lomin: lominValue,
       lomax: lomaxValue,
     } = inputsValues;
-    laminValue = Math.min(Math.max(parseInt(laminValue), 0), 90).toString();
-    lamaxValue = Math.min(Math.max(parseInt(lamaxValue), 0), 90).toString();
-    lominValue = Math.min(Math.max(parseInt(lominValue), 0), 180).toString();
-    lomaxValue = Math.min(Math.max(parseInt(lomaxValue), 0), 180).toString();
+    laminValue = Math.min(Math.max(parseInt(laminValue), -90), 90).toString();
+    lamaxValue = Math.min(Math.max(parseInt(lamaxValue), -90), 90).toString();
+    lominValue = Math.min(Math.max(parseInt(lominValue), -180), 180).toString();
+    lomaxValue = Math.min(Math.max(parseInt(lomaxValue), -180), 180).toString();
     const params: SearchParams = {
       lamin: laminValue,
       lamax: lamaxValue,
       lomin: lominValue,
       lomax: lomaxValue,
     };
+    console.log(params);
     if (
       params.lamin === "0" &&
       params.lamax === "0" &&
       params.lomin === "0" &&
       params.lomax === "0"
     ) {
-      setSearchParams({ lamin: "0", lamax: "90", lomin: "0", lomax: "180" });
-    } else if (
-      parseInt(params.lamin) >= parseInt(params.lamax) ||
-      parseInt(params.lomin) >= parseInt(params.lomax)
-    ) {
-      setSearchParams({ lamin: "0", lamax: "90", lomin: "0", lomax: "180" });
+      setSearchParams({
+        lamin: "-90",
+        lamax: "90",
+        lomin: "-180",
+        lomax: "180",
+      });
     } else {
       setSearchParams(params);
     }
-    setInputsValues({ lamin: "0", lamax: "90", lomin: "0", lomax: "180" });
+    setInputsValues({ lamin: "-90", lamax: "90", lomin: "-180", lomax: "180" });
   };
 
   return (
@@ -63,7 +64,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
             className="w-1/4 text-black text-center"
             type="text"
             name="lamin"
-            placeholder="Enter number between 0 to 90"
+            placeholder="Enter number between -90 to 90"
             value={inputsValues.lamin}
             onChange={handleChange}
           />
@@ -74,7 +75,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
             className="w-1/4 text-black text-center"
             type="text"
             name="lamax"
-            placeholder="Enter number between 0 to 90"
+            placeholder="Enter number between -90 to 90"
             value={inputsValues.lamax}
             onChange={handleChange}
           />
@@ -85,7 +86,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
             className="w-1/4 text-black text-center"
             type="text"
             name="lomin"
-            placeholder="Enter number between 0 to 180"
+            placeholder="Enter number between -180 to 180"
             value={inputsValues.lomin}
             onChange={handleChange}
           />
@@ -96,7 +97,7 @@ const Searchbar: React.FC<Props> = ({ setSearchParams }) => {
             className="w-1/4 text-black text-center"
             type="text"
             name="lomax"
-            placeholder="Enter number between 0 to 180"
+            placeholder="Enter number between -180 to 180"
             value={inputsValues.lomax}
             onChange={handleChange}
           />
