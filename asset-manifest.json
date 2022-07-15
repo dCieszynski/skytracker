@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/skytracker/static/css/main.5921706b.css",
-    "main.js": "/skytracker/static/js/main.f4f34c8d.js",
+    "main.js": "/skytracker/static/js/main.c76a1567.js",
     "static/media/aircraft.png": "/skytracker/static/media/aircraft.4a95ef77f0fdc5596302.png",
     "index.html": "/skytracker/index.html",
     "main.5921706b.css.map": "/skytracker/static/css/main.5921706b.css.map",
-    "main.f4f34c8d.js.map": "/skytracker/static/js/main.f4f34c8d.js.map"
+    "main.c76a1567.js.map": "/skytracker/static/js/main.c76a1567.js.map"
   },
   "entrypoints": [
     "static/css/main.5921706b.css",
-    "static/js/main.f4f34c8d.js"
+    "static/js/main.c76a1567.js"
   ]
 }
